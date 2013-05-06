@@ -1,9 +1,12 @@
-coffee = require 'coffee-script'
-stylus = require 'stylus'
+# lib
 express = require 'express'
-routes = require './routes'
 http = require 'http'
 path = require 'path'
+assets = require 'connect-assets'
+coffee = require 'coffee-script'
+
+# source
+routes = require './routes'
 
 app = express()
 
@@ -19,9 +22,11 @@ app.use express.cookieParser('play')
 app.use express.session()
 app.use app.router
 
+# assets pipeline
+app.use assets()
+
 # serve static files
-app.use stylus.middleware(__dirname + '/public')
-app.use express.static(path.join(__dirname, 'public'))
+app.use express.static(path.join(__dirname, 'assets'))
 
 # development only
 if 'development' == app.get('env')

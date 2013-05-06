@@ -1,5 +1,17 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+html(lang="en", ng-app="myApp")
+  head
+    meta(chartset="utf-8")
+    title My App
+    != css('app.css') 
+    != css('lib/bootstrap/bootstrap.min')
+    != css('lib/bootstrap/bootstrap-responsive.min')
+    != js('lib/bootstrap/bootstrap.min')
+    != js('lib/angular/angular.min')
+    != js('app')
+    != js('controllers')
+    != js('directives')
+    != js('filters')
+    != js('services')
+  body(ng-controller="MainCtrl")
+    h1(ng-bind="title")
+    p(ng-bind="greeting")
