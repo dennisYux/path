@@ -34,6 +34,10 @@ if 'development' == app.get('env')
 
 # routes
 app.get '/', routes.index
+app.get '/partials/:name', routes.partials
+
+# redirect all others to the index 
+# app.use routes.index
 
 http.createServer(app).listen(app.get('port'), -> 
   console.log 'Express server listening on port ' + app.get('port')

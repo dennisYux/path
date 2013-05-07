@@ -1,14 +1,14 @@
 basePath = '../';
 
 files = [
-  // JASMINE,
-  // JASMINE_ADAPTER,
-  MOCHA,
-  MOCHA_ADAPTER,
-  'public/js/lib/angular/angular.js',
-  'public/js/lib/angular/angular-*.js',
+  JASMINE,
+  JASMINE_ADAPTER,
+  // MOCHA,
+  // MOCHA_ADAPTER,
+  'assets/js/lib/angular/angular.js',
+  'assets/js/lib/angular/angular-*.js',
   'test/client/lib/angular/angular-mocks.js',
-  'public/js/**/*.coffee',
+  'assets/js/**/*.coffee',
   'test/client/unit/**/*.coffee'
 ];
 

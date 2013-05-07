@@ -1,10 +1,15 @@
 html(lang="en", ng-app="myApp")
   head
     meta(chartset="utf-8")
-    title My App
-    != css('app.css') 
+    //- meta(http-equiv="refresh", content="1")
+    title My App 
+  body
+    div(ng-view)
+    a(href="#/main") link
+
     != css('lib/bootstrap/bootstrap.min')
     != css('lib/bootstrap/bootstrap-responsive.min')
+    != css('app')
     != js('lib/bootstrap/bootstrap.min')
     != js('lib/angular/angular.min')
     != js('app')
@@ -12,6 +17,3 @@ html(lang="en", ng-app="myApp")
     != js('directives')
     != js('filters')
     != js('services')
-  body(ng-controller="MainCtrl")
-    h1(ng-bind="title")
-    p(ng-bind="greeting")
