@@ -14,3 +14,10 @@ pathList = ($scope, $http) ->
     $scope.paths = data
 
 mod.controller 'PathListCtrl', ['$scope', '$http', pathList]
+
+pathDetail = ($scope, $http) ->
+  # require path details
+  $http.get('api/paths/1').success (data) ->
+    $scope.pathDetail = data
+
+mod.controller 'PathDetailCtrl', ['$scope', '$http', pathDetail]

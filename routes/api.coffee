@@ -1,4 +1,4 @@
-exports.paths = (req, res) ->
+exports.fetchPaths = (req, res) ->
   # fake data
   paths = [
     {
@@ -34,3 +34,13 @@ exports.paths = (req, res) ->
   ]
   res.json paths
 
+exports.fetchPath = (req, res) ->
+  id = req.params.id
+  console.log id
+  # fake data
+  path = {
+    id: id
+    name: 'C++'
+    author: 'Jack'
+  }
+  res.json path

@@ -5,6 +5,10 @@ config = ($routeProvider, $locationProvider) ->
     templateUrl: 'partials/home'
     controller: 'HomeCtrl'
 
+  $routeProvider.when '/paths/:id', 
+    templateUrl: 'partials/pathDetail'
+    controller: 'PathDetailCtrl'
+
   $routeProvider.when '/about', 
     templateUrl: 'partials/about'
     controller: 'AboutCtrl'

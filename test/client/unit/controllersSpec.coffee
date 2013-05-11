@@ -40,6 +40,28 @@ describe 'myApp controllers', ->
           {name: 'Java'}
         ]
 
+  describe 'PathDetailCtrl', ->
+
+    $httpBackend = null
+
+    beforeEach inject(
+      (_$httpBackend_, $controller) ->
+        $httpBackend = _$httpBackend_
+        $httpBackend.expectGET('api/paths/:id').respond {
+          name: 'C++'
+          author: 'Jack'
+        }        
+        ctrl = $controller 'PathDetailCtrl', {$scope: scope}
+    )
+
+    it 'should create pathDetail model with 1 path fetched from xhr', ->
+      expect(scope.pathDetail).toBeUndefined()
+      $httpBackend.flush()
+      expect(scope.pathDetail).toEqual {
+        name: 'C++'
+        author: 'Jack'
+      }
+
   describe 'AboutCtrl', ->
 
     beforeEach inject(

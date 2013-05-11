@@ -38,7 +38,8 @@ app.get '/', routes.index
 app.get '/partials/:name', routes.partials
 
 # json
-app.get '/api/paths', apis.paths
+app.get '/api/paths', apis.fetchPaths
+app.get '/api/paths/:id', apis.fetchPath
 
 # redirect all others to the index 
 # app.use routes.index

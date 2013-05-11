@@ -1,7 +1,7 @@
 h1 Home
-ul(ng-controller="PathListCtrl")
-  li(ng-repeat="path in paths")
-    h3 {{path.name}}
+ul.paths-list(ng-controller="PathListCtrl")
+  li.path(ng-repeat="path in paths")
+    h3: a(href="#/paths/{{path.id}}") {{path.name}}
     p {{path.level}}
     p(ng-repeat="step in path.steps")
       | {{step.time}} {{step.action}}
