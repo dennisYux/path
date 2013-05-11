@@ -4,11 +4,18 @@ html(lang="en", ng-app="myApp")
     //- meta(http-equiv="refresh", content="1")
     title My App 
   body
+  .container
+    .navbar.navbar-fixed-top(ng-controller="NavbarListCtrl")
+      .navbar-inner
+        ul.nav
+          li(ng-repeat="nav in navsList") 
+            a(ng-bind="nav.label", ng-href="nav.link") 
+
     div(ng-view)
     a(href="#/main") link
 
-    != css('lib/bootstrap/bootstrap.min')
-    != css('lib/bootstrap/bootstrap-responsive.min')
+    // != css('lib/bootstrap/bootstrap.min')
+    // != css('lib/bootstrap/bootstrap-responsive.min')
     != css('app')
     != js('lib/bootstrap/bootstrap.min')
     != js('lib/angular/angular.min')
