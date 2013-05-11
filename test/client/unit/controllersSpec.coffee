@@ -1,29 +1,16 @@
 describe 'myApp controllers', ->
+  scope = {}
 
   beforeEach module('myApp.controllers')
+  beforeEach inject(
+    ($rootScope) ->
+      scope = $rootScope.$new()
+  )
 
   describe 'MainCtrl', ->
-    scope = {}
-    
+
     beforeEach inject(
-      ($rootScope, $controller) ->
-        scope = $rootScope.$new()
+      ($controller) ->
         ctrl = $controller 'MainCtrl', {$scope: scope}
     )
-
-  describe 'NavbarListCtrl', ->
-    scope = {}
-
-    beforeEach inject(
-      ($rootScope, $controller) ->
-        scope = $rootScope.$new()
-        ctrl = $controller 'NavbarListCtrl', {$scope: scope}
-    )
-
-    it 'should create 2 navs', ->
-      expect(scope.navsList.length).toBe 2
-
-  describe 'CreateNoteCtrl', ->
-
-    it 'should do sth.', ->
 

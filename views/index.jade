@@ -5,11 +5,11 @@ html(lang="en", ng-app="myApp")
     title My App 
   body
   .container
-    .navbar.navbar-fixed-top(ng-controller="NavbarListCtrl")
+    .navbar.navbar-fixed-top
       .navbar-inner
         ul.nav
-          li(ng-repeat="nav in navsList") 
-            a(ng-bind="nav.label", ng-href="nav.link") 
+          li: a(href="#/main") Home
+          li: a(href="#/about") About
 
     div(ng-view)
     a(href="#/main") link
