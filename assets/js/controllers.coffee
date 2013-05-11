@@ -1,7 +1,9 @@
 mod = angular.module 'myApp.controllers', []
 
-main = ($scope) ->
-  $scope.title = "Angular"
-  $scope.greeting = "Welcome to Angular"
+home = ($scope) ->
 
-mod.controller 'MainCtrl', ['$scope', main]
+mod.controller 'HomeCtrl', ['$scope', home]
+
+about = ($scope) ->
+
+mod.controller 'AboutCtrl', ['$scope', about]

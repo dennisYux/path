@@ -7,10 +7,17 @@ describe 'myApp controllers', ->
       scope = $rootScope.$new()
   )
 
-  describe 'MainCtrl', ->
+  describe 'HomeCtrl', ->
 
     beforeEach inject(
       ($controller) ->
-        ctrl = $controller 'MainCtrl', {$scope: scope}
+        ctrl = $controller 'HomeCtrl', {$scope: scope}
+    )
+
+  describe 'AboutCtrl', ->
+
+    beforeEach inject(
+      ($controller) ->
+        ctrl = $controller 'AboutCtrl', {$scope: scope}
     )
 
