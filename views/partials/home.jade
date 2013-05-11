@@ -1,1 +1,7 @@
 h1 Home
+ul(ng-controller="PathListCtrl")
+  li(ng-repeat="path in paths")
+    h3 {{path.name}}
+    p {{path.level}}
+    p(ng-repeat="step in path.steps")
+      | {{step.time}} {{step.action}}

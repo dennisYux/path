@@ -7,6 +7,7 @@ coffee = require 'coffee-script'
 
 # source
 routes = require './routes'
+apis = require './routes/api'
 
 app = express()
 
@@ -35,6 +36,9 @@ if 'development' == app.get('env')
 # routes
 app.get '/', routes.index
 app.get '/partials/:name', routes.partials
+
+# json
+app.get '/api/paths', apis.paths
 
 # redirect all others to the index 
 # app.use routes.index
