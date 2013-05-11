@@ -4,13 +4,15 @@ html(lang="en", ng-app="myApp")
     //- meta(http-equiv="refresh", content="1")
     title My App 
   body
-  .container
-    .navbar.navbar-fixed-top
-      .navbar-inner
+  .navbar.navbar-fixed-top
+    .navbar-inner
+      .container
         ul.nav
           li: a(href="#/") Home
+        ul.nav.pull-right
           li: a(href="#/about") About
 
+  .container
     div(ng-view)
 
     // != css('lib/bootstrap/bootstrap.min')
