@@ -8,37 +8,27 @@ describe 'myApp controllers', ->
       scope = $rootScope.$new()
   )
 
-  describe 'HomeCtrl', ->
+  describe 'PathListCtrl', ->
+
+    $httpBackend = null
 
     beforeEach inject(
-      ($controller) ->
-        ctrl = $controller 'HomeCtrl', {$scope: scope}
-    )
-
-    describe 'PathListCtrl', ->
-
-      pathListScope = null
-      $httpBackend = null
-
-      beforeEach inject(
-        (_$httpBackend_, $controller) ->
-          $httpBackend = _$httpBackend_
-          $httpBackend.expectGET('api/paths').respond [
-            {name: 'C++'}
-            {name: 'Java'}
-          ]
-
-          pathListScope = scope.$new()
-          pathListCtrl = $controller 'PathListCtrl', {$scope: pathListScope}
-      )
-
-      it 'should create paths model with 2 paths fetched from xhr', ->
-        expect(pathListScope.paths).toBeUndefined()
-        $httpBackend.flush()
-        expect(pathListScope.paths).toEqual [
+      (_$httpBackend_, $controller) ->
+        $httpBackend = _$httpBackend_
+        $httpBackend.expectGET('api/paths').respond [
           {name: 'C++'}
           {name: 'Java'}
         ]
+        ctrl = $controller 'PathListCtrl', {$scope: scope}
+    )
+
+    it 'should create paths model with 2 paths fetched from xhr', ->
+      expect(scope.paths).toBeUndefined()
+      $httpBackend.flush()
+      expect(scope.paths).toEqual [
+        {name: 'C++'}
+        {name: 'Java'}
+      ]
 
   describe 'PathDetailCtrl', ->
 
@@ -47,7 +37,7 @@ describe 'myApp controllers', ->
     beforeEach inject(
       (_$httpBackend_, $controller) ->
         $httpBackend = _$httpBackend_
-        $httpBackend.expectGET('api/paths/:id').respond {
+        $httpBackend.expectGET('api/paths/1').respond {
           name: 'C++'
           author: 'Jack'
         }        
@@ -61,11 +51,4 @@ describe 'myApp controllers', ->
         name: 'C++'
         author: 'Jack'
       }
-
-  describe 'AboutCtrl', ->
-
-    beforeEach inject(
-      ($controller) ->
-        ctrl = $controller 'AboutCtrl', {$scope: scope}
-    )
 

@@ -1,0 +1,7 @@
+h1 Paths
+ul.paths-list
+  li.path(ng-repeat="path in paths")
+    h3: a(href="#/paths/{{path.id}}") {{path.name}}
+    p {{path.level}}
+    p(ng-repeat="step in path.steps")
+      | {{step.time}} {{step.action}}

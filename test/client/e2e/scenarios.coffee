@@ -7,6 +7,13 @@ describe "myApp", ->
     it "should render home when user navigates to /", ->
       expect(element("h1:first").text()).toMatch 'Home'
 
+  describe "Path list view", ->    
+    beforeEach ->
+      browser().navigateTo "/#/paths"
+
+    it "should render path list view when user navigates to /paths", ->
+      expect(element("h1:first").text()).toMatch 'Paths'
+
     it "should navigate to /paths/1 when user clicks first path detail link", ->
       element("li.path > h3 > a:first").click()
       expect(browser().location().url()).toBe '/paths/1'

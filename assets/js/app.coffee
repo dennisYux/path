@@ -5,15 +5,19 @@ config = ($routeProvider, $locationProvider) ->
     templateUrl: 'partials/home'
     controller: 'HomeCtrl'
 
-  $routeProvider.when '/paths/:id', 
-    templateUrl: 'partials/pathDetail'
-    controller: 'PathDetailCtrl'
-
   $routeProvider.when '/about', 
     templateUrl: 'partials/about'
     controller: 'AboutCtrl'
 
-  $routeProvider.otherwise redirectTo: '/'
+  $routeProvider.when '/paths', 
+    templateUrl: 'partials/pathList'
+    controller: 'PathListCtrl'
+
+  $routeProvider.when '/paths/:id', 
+    templateUrl: 'partials/pathDetail'
+    controller: 'PathDetailCtrl'
+
+  $routeProvider.otherwise redirectTo: '/paths'
   # $locationProvider.html5Mode true
 
 app.config ['$routeProvider', '$locationProvider', config]
