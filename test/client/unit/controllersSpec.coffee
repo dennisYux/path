@@ -45,9 +45,9 @@ describe 'myApp controllers', ->
     )
 
     it 'should create pathDetail model with 1 path fetched from xhr', ->
-      expect(scope.pathDetail).toBeUndefined()
+      expect(scope.path).toBeUndefined()
       $httpBackend.flush()
-      expect(scope.pathDetail).toEqual {
+      expect(scope.path).toEqual {
         name: 'C++'
         author: 'Jack'
       }

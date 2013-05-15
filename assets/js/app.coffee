@@ -13,7 +13,7 @@ config = ($routeProvider, $locationProvider) ->
     templateUrl: 'partials/pathList'
     controller: 'PathListCtrl'
 
-  $routeProvider.when '/paths/:id', 
+  $routeProvider.when '/paths/:pathId', 
     templateUrl: 'partials/pathDetail'
     controller: 'PathDetailCtrl'
 

@@ -1,13 +1,17 @@
 # lib
+require 'coffee-script'
 express = require 'express'
 http = require 'http'
 path = require 'path'
 assets = require 'connect-assets'
-coffee = require 'coffee-script'
+mongoose = require 'mongoose'
 
 # source
-routes = require './routes'
-apis = require './routes/api'
+require './app/models/trace'
+require './app/models/path'
+dbUtils = require './utils/db'
+config = require './config/app'
+routes = require './config/routes'
 
 app = express()
 
@@ -16,10 +20,10 @@ app.set 'port', process.env.PORT || 3000
 app.set 'views', __dirname + '/views'
 app.set 'view engine', 'jade'
 app.use express.favicon()
-app.use express.logger('dev')
+app.use express.logger 'dev'
 app.use express.bodyParser()
 app.use express.methodOverride()
-app.use express.cookieParser('play')
+app.use express.cookieParser 'play'
 app.use express.session()
 app.use app.router
 
@@ -27,23 +31,18 @@ app.use app.router
 app.use assets()
 
 # serve static files
-app.use express.static(path.join(__dirname, 'assets'))
+app.use express.static path.join(__dirname, 'assets')
 
 # development only
-if 'development' == app.get('env')
+if 'development' == app.get 'env'
   app.use express.errorHandler()
 
+# mongodb
+mongoose.connect config[app.get 'env'].db, dbUtils.clearDb dbUtils.seedDb()
+
 # routes
-app.get '/', routes.index
-app.get '/partials/:name', routes.partials
+routes app
 
-# json
-app.get '/api/paths', apis.fetchPaths
-app.get '/api/paths/:id', apis.fetchPath
+http.createServer(app).listen app.get('port'), -> 
+  console.log 'Express server listening on port ' + app.get 'port'
 
-# redirect all others to the index 
-# app.use routes.index
-
-http.createServer(app).listen(app.get('port'), -> 
-  console.log 'Express server listening on port ' + app.get('port')
-)

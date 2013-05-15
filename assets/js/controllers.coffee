@@ -9,15 +9,15 @@ about = ($scope) ->
 mod.controller 'AboutCtrl', ['$scope', about]
 
 pathList = ($scope, $http) ->
-  # require paths
+  # request paths
   $http.get('api/paths').success (data) ->
     $scope.paths = data
 
 mod.controller 'PathListCtrl', ['$scope', '$http', pathList]
 
-pathDetail = ($scope, $http) ->
-  # require path details
-  $http.get('api/paths/1').success (data) ->
-    $scope.pathDetail = data
+pathDetail = ($scope, $routeParams, $http) ->
+  # request path details
+  $http.get('api/paths/'+$routeParams.pathId).success (data) ->
+    $scope.path = data
 
-mod.controller 'PathDetailCtrl', ['$scope', '$http', pathDetail]
+mod.controller 'PathDetailCtrl', ['$scope', '$routeParams', '$http', pathDetail]
