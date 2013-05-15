@@ -1,5 +1,4 @@
---compilers coffee:coffee-script 
---require should
+--compilers coffee:coffee-script
 --reporter dot
 --ui bdd
 --recursive
