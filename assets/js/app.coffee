@@ -1,6 +1,9 @@
 app = angular.module 'myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers']
 
-config = ($routeProvider, $locationProvider) -> 
+# 
+# Routes config
+# 
+app.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
   $routeProvider.when '/', 
     templateUrl: 'partials/home'
     controller: 'HomeCtrl'
@@ -13,13 +16,12 @@ config = ($routeProvider, $locationProvider) ->
     templateUrl: 'partials/pathList'
     controller: 'PathListCtrl'
 
-  $routeProvider.when '/paths/:pathId', 
+  $routeProvider.when '/paths/:id', 
     templateUrl: 'partials/pathDetail'
     controller: 'PathDetailCtrl'
 
   $routeProvider.otherwise redirectTo: '/paths'
   # $locationProvider.html5Mode true
-
-app.config ['$routeProvider', '$locationProvider', config]
+]
 
 

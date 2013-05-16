@@ -1,23 +1,20 @@
 mod = angular.module 'myApp.controllers', []
 
-home = ($scope) ->
+mod.controller 'HomeCtrl', ($scope) -> 
+mod.controller 'AboutCtrl', ($scope) -> 
 
-mod.controller 'HomeCtrl', ['$scope', home]
-
-about = ($scope) ->
-
-mod.controller 'AboutCtrl', ['$scope', about]
-
-pathList = ($scope, $http) ->
+# 
+# Path list controller
+# 
+mod.controller 'PathListCtrl', ($scope, Path) ->
   # request paths
-  $http.get('api/paths').success (data) ->
-    $scope.paths = data
+  paths = Path.query ->
+  	$scope.paths = paths
 
-mod.controller 'PathListCtrl', ['$scope', '$http', pathList]
-
-pathDetail = ($scope, $routeParams, $http) ->
+# 
+# Path detail controller
+# 
+mod.controller 'PathDetailCtrl', ($scope, $routeParams, Path) ->
   # request path details
-  $http.get('api/paths/'+$routeParams.pathId).success (data) ->
-    $scope.path = data
-
-mod.controller 'PathDetailCtrl', ['$scope', '$routeParams', '$http', pathDetail]
+  path = Path.get {id: $routeParams.id}, ->
+    $scope.path = path
