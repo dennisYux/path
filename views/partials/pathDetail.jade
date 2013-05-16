@@ -1,4 +1,6 @@
 h1 Detail
 h3 {{path.title}}
-p {{path.category}}
-p {{path.a}}
+ul.trace-list
+  li.trace(ng-repeat="trace in path.traces")
+    h3: a(href="#/paths/{{path._id}}/traces/{{trace._id}}") {{trace.title}}
+    p {{trace.body}}
