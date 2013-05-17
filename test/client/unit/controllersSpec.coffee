@@ -56,3 +56,25 @@ describe 'myApp controllers', ->
         author: 'Jack'
       }
 
+  describe 'TraceDetailCtrl', ->
+
+    $httpBackend = null
+
+    beforeEach inject (_$httpBackend_, $routeParams, $controller) ->
+      $httpBackend = _$httpBackend_
+      $httpBackend.expectGET('/api/paths/1/traces/1').respond {
+        name: 'C++'
+        author: 'Jack'
+      }        
+      $routeParams.pathId = 1
+      $routeParams.id = 1
+      ctrl = $controller 'TraceDetailCtrl', {$scope: scope}    
+
+    it 'should create traceDetail model with 1 trace fetched from xhr', ->
+      expect(scope.trace).toBeUndefined()
+      $httpBackend.flush()
+      expect(scope.trace).toEqualData {
+        name: 'C++'
+        author: 'Jack'
+      }
+

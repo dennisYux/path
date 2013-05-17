@@ -18,3 +18,11 @@ mod.controller 'PathDetailCtrl', ($scope, $routeParams, Path) ->
   # request path details
   path = Path.get {id: $routeParams.id}, ->
     $scope.path = path
+
+# 
+# Trace detail controller
+# 
+mod.controller 'TraceDetailCtrl', ($scope, $routeParams, Trace) ->
+  # request trace details
+  trace = Trace.get {pathId: $routeParams.pathId, id: $routeParams.id}, ->
+    $scope.trace = trace

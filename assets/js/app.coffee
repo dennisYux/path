@@ -20,6 +20,10 @@ app.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationPro
     templateUrl: 'partials/pathDetail'
     controller: 'PathDetailCtrl'
 
+  $routeProvider.when '/paths/:pathId/traces/:id', 
+    templateUrl: 'partials/traceDetail'
+    controller: 'TraceDetailCtrl'
+
   $routeProvider.otherwise redirectTo: '/paths'
   # $locationProvider.html5Mode true
 ]

@@ -38,11 +38,13 @@ if 'development' == app.get 'env'
   app.use express.errorHandler()
 
 # mongodb
-mongoose.connect config[app.get 'env'].db, dbUtils.clearDb dbUtils.seedDb()
+mongoose.connect config[app.get 'env'].db
 
 # routes
 routes app
 
-http.createServer(app).listen app.get('port'), -> 
-  console.log 'Express server listening on port ' + app.get 'port'
+# seed db before server starts
+dbUtils.clearDb dbUtils.seedDb ->
+  http.createServer(app).listen app.get('port'), -> 
+    console.log 'Express server listening on port ' + app.get 'port'
 
